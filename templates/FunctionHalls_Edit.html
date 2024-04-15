@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Halls </title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/lib/tailwindcss.js"></script>
+</head>
+<body>
+    <nav class="px-4 py-2 bg-[#ffff]" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" >
+        <div class="flex justify-between items-center">
+            <div class="">
+                <img src="./static/images/logo_2.png" alt="Logo" class="w-14 h-16 text-[#79767b] ">
+            </div>
+            <ul class="flex items-center text-[14px] text-[#747176] font-bold   gap-4">
+                <li class="mr-7">
+                    <a href="/landing_page_welfare" class="border-b-4 border-[#000] p-2">Home</a>
+                </li>
+                <li class="mr-7">
+                    <a href="#" class="">Dept Forms</a>
+                    <ul class="dropdown-menu capitalize">
+                        {% for form in form_names|sort(attribute='form_name') %}
+                            <li><a href="/{{ form.form_name }}">{{ form.form_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                  <li class="mr-7">
+                      <a href="#" class="">Establishment </a>
+                  </li>
+                <li class="mr-7">
+                    <a href="#" class="">Reports</a>
+                </li>
+                
+               
+            </ul>
+            <div class="">
+              <div id="" class="profile_btn">
+                  <div class="flex items-center">
+                      <img src="./static/images/Male User.svg" alt="" id="profile_btn">
+                  </div>
+                  
+
+                  <div id="profile_box">
+                      <div class="flex flex-col bg-white text-left shadow-lg rounded border">
+                          <div class="p-3">
+                              <div class="capitalize font-bold" id="u_name">{{user.name}}</div>
+                              <div class="lowercase text-sm mt-1.5" id="u_email">{{user.email}}</div>
+                          </div>
+                          <div class="text-sm bg-red-500 block p-3 text-white cursor-pointer" id=""><a href = "{{ url_for('logout')}}">Logout </a></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            
+        </div>
+    </nav>
+    <div class="max-w-screen-xl mx-auto  mt-4 rounded-lg   p-8 " style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" >
+        <div class="flex justify-center rounded-lg  p-2" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+            <form action="{{ url_for('edit_functionHalls', fh_id=functionHalls.id) }}" method="POST">
+                <div class="text-lg mb-6 font-Large text-gray-900" style="text-align: center;">
+                        <h2>FUNCTION HALLS</h2>
+                    </div>
+
+                    <div class="grid grid-cols-2 items-center ml-8 gap-8">
+                        <div class="relative">
+                            <div for="" class="block text-sm font-medium text-gray-900 rounded-sm w-fit px-1 flex mb-1">FUNCTION HALL NAME</div>
+                            <div class=""></div>
+                            <select id="Function_Hall_Name" name="Function_Hall_Name"
+                                class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                                style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                    <option value="" selected disabled hidden>Select an Option</option>
+                                    <option value="SSRK"  {% if functionHalls.function_hall_name == 'SSRK' %} selected {% endif %}>SSRK</option>
+                                    <option value="Sagarmala" {% if functionHalls.function_hall_name == 'Sagarmala' %} selected {% endif %}>Sagarmala</option>
+                                    <option value="DLB Kalyanamandapam" {% if functionHalls.function_hall_name == 'DLB Kalyanamandapam' %} selected {% endif %}>DLB Kalyanamandapam</option>
+                                    <option value="Kalavani AC Auditorium" {% if functionHalls.function_hall_name == 'Kalavani AC Auditorium' %} selected {% endif %}>Kalavani AC Auditorium</option>
+                            </select>
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Alloted to(Party Name)</div>
+                            <div class=""></div>
+                            <input type="text" id="Alloted_To_Party_Name" name='Alloted_To_Party_Name' value="{{functionHalls.alloted_to_party_name}}" class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block text-sm font-medium text-gray-900 rounded-sm w-fit px-1 flex mb-1">Free Allotment?</div>
+                            <div class=""></div>
+                            <select id="Free_Allotment" name="Free_Allotment" onchange="freeAllotTrue()"
+                                class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                                style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                    <option value="" selected disabled hidden>Select an Option</option>
+                                    <option value="YES" {% if functionHalls.free_allotment == 'YES' %} selected {% endif %}>YES</option>
+                                    <option value="NO" {% if functionHalls.free_allotment == 'NO' %} selected {% endif %}>NO</option>
+                            </select>
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Reason for Free Allotment</div>
+                            <div class=""></div>
+                            <input type="text" id="Reason_for_Free_Allotment" name='Reason_For_Free_Allotment' value="{{functionHalls.reason_for_free_allotment}}" class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Revenue(Rs)</div>
+                            <div class=""></div>
+                            <input type="number" min="0" step="1" oninput="validity.valid||(value='');"   id="Revenue_Rs" name='Revenue_Rs' value="{{functionHalls.revenue_rs}}" class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                    
+                        <div class="col-span-2 flex justify-center mx-6 my-6">
+                            <button type="submit" class="w-fit bg-green-500 text-white py-2 px-4 rounded shadow text-sm" id="civil_submit_btn">Submit</button>
+                        </div>                             
+                </div> 
+              </form>
+        </div>
+    </div>
+</body>
+<script>
+    function freeAllotTrue() {
+    var freeAllot = document.getElementById("Free_Allotment");
+    var Reason = document.getElementById("Reason_for_Free_Allotment");
+    var Revenue = document.getElementById("Revenue_Rs");
+
+    if (freeAllot.value === 'YES') {
+        Reason.value = '';
+        Reason.placeholder = 'Enter Reason for Free Allotment';
+        Revenue.placeholder = '0 - Free Allotment';
+        Reason.disabled = false;
+        Revenue.disabled = true;
+    } else if (freeAllot.value === 'NO') {
+        Reason.value = 'No Free Allotment';
+        Revenue.placeholder = 'Enter Revenue';
+        Reason.placeholder = '';
+        Reason.disabled = true;
+        Revenue.disabled = false;
+    }
+}
+
+    </script>
+</html>

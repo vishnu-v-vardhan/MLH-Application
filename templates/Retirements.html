@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NO OF RETIREMENTS </title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/lib/tailwindcss.js"></script>
+</head>
+<body>
+    <nav class="px-4 py-2 bg-[#ffff]" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" >
+        <div class="flex justify-between items-center">
+            <div class="">
+                <img src="./static/images/logo_2.png" alt="Logo" class="w-14 h-16 text-[#79767b] ">
+            </div>
+            <ul class="flex items-center text-[14px] text-[#747176] font-bold   gap-4">
+                <li class="mr-7">
+                    <a href="/landing_page_welfare" class="border-b-4 border-[#000] p-2">Home</a>
+                </li>
+                <li class="mr-7">
+                    <a href="#" class="">Dept Forms</a>
+                    <ul class="dropdown-menu capitalize">
+                        {% for form in form_names|sort(attribute='form_name') %}
+                            <li><a href="{{ form.form_name }}">{{ form.form_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                  <li class="mr-7">
+                      <a href="#" class="">Establishment </a>
+                  </li>
+                <li class="mr-7">
+                    <a href="#" class="">Reports</a>
+                </li>
+                
+               
+            </ul>
+            <div class="">
+              <div id="" class="profile_btn">
+                  <div class="flex items-center">
+                      <img src="./static/images/Male User.svg" alt="" id="profile_btn">
+                  </div>
+                  
+
+                  <div id="profile_box">
+                      <div class="flex flex-col bg-white text-left shadow-lg rounded border">
+                          <div class="p-3">
+                              <div class="capitalize font-bold" id="u_name">{{user.name}}</div>
+                              <div class="lowercase text-sm mt-1.5" id="u_email">{{user.email}}</div>
+                          </div>
+                          <div class="text-sm bg-red-500 block p-3 text-white cursor-pointer" id=""><a href = "{{ url_for('logout')}}">Logout </a></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            
+        </div>
+    </nav>
+    <div class="max-w-screen-xl mx-auto  mt-4 rounded-lg   p-8 " style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" >
+        <div class="flex justify-center rounded-lg  p-2" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+                <form action="/submit_Retirements" method="POST">`
+                    <div class="text-lg mb-6 font-Large text-gray-900" style="text-align: center;">
+                        <h2>NO OF RETIREMENTS</h2>
+                    </div>
+
+                    <div class="grid grid-cols-2 items-center ml-8 gap-8">
+                        <div class="relative">
+                            <div for="" class="block text-sm font-medium text-gray-900 rounded-sm w-fit px-1 flex mb-1">Concerned Department</div>
+                            <div class=""></div>
+                            <select id="Concerned_Department_Retirements" name='Concerned_Department_Retirements'
+                                class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                                style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                <option value="" selected disabled hidden>Select an Option</option>
+                                <option value="General Administration">General Administration</option>
+                                <option value="Mechanical, electrical & electronics">Mechanical, Electrical & Electronics</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Traffic">Traffic</option>
+                                <option value="Medical">Medical</option>
+                                <option value="Marine">Marine</option>
+                                <option value="Resource & Planning">Resource & Planning</option>
+                            </select>
+                        </div>
+                        
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Post Category</div>
+                            <div class=""></div>
+                            <select id="Post_Category_Retirements" name='Post_Category_Retirements'
+                                class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                                style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                <option value="" selected disabled hidden>Select an Option</option>
+                                <option value="CLASS 1">CL-1</option>
+                                <option value="CLASS 2">CL-2</option>
+                                <option value="CLASS 3">CL-3</option>
+                                <option value="CLASS 4">CL-4</option>
+                            </select>
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Employee Code</div>
+                            <div class=""></div>
+                            <input type="text" id="Employee_Code_Retirements" name='Employee_Code_Retirements' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Employee Name</div>
+                            <div class=""></div>
+                            <input type="text" id="Employee_Name_Retirements" name='Employee_Name_Retirements' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Designation</div>
+                            <div class=""></div>
+                            <select id="Designation_Retirements" name='Designation_Retirements' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                                 style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                   <option value="" selected disabled hidden>Select an Option</option>
+                                </select>
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Payscale</div>
+                            <div class=""></div>
+                            <select id="Payscale_Retirements" name='Payscale_Retirements' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                            style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                <option value="" selected disabled hidden>Select an Option</option>
+                                <option value="100000-260000">100000-260000</option>
+                                <option value="120000-280000">120000-280000</option>
+                                <option value="123100 - 215900">123100 - 215900</option>
+                                <option value="130600-215900">130600-215900</option>
+                                <option value="144200-218200">144200-218200</option>
+                                <option value="16400-40500">16400-40500</option>
+                                <option value="20900-43600">20900-43600</option>
+                                <option value="21800-50200">21800-50200</option>
+                                <option value="22300-51000">22300-51000</option>
+                                <option value="23100-54600">23100-54600</option>
+                                <option value="24200-58600">24200-58600</option>
+                                <option value="25000-59600">25000-59600</option>
+                                <option value="25200-59600">25200-59600</option>
+                                <option value="27400-70500">27400-70500</option>
+                                <option value="29600-81000">29600-81000</option>
+                                <option value="29600-81100">29600-81100</option>
+                                <option value="32500-83800">32500-83800</option>
+                                <option value="35200-83800">35200-83800</option>
+                                <option value="36500-88700">36500-88700</option>
+                                <option value="40000 - 140000">40000 - 140000</option>
+                                <option value="40000- 140000">40000- 140000</option>
+                                <option value="40000-140000">40000-140000</option>
+                                <option value="50000- 160000">50000- 160000</option>
+                                <option value="50000-160000">50000-160000</option>
+                                <option value="60000- 180000">60000- 180000</option>
+                                <option value="60000-180000">60000-180000</option>
+                                <option value="70000-200000">70000-200000</option>
+                                <option value="80000-220000">80000-220000</option>
+                                <option value="90000-240000">90000-240000</option>
+                                </select>
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Retirement Date</div>
+                            <div class=""></div>
+                            <input type="date" id="Retirement_Date_Retirements" name='Retirement_Date_Retirements' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Residing in port quaters</div>
+                            <div class=""></div>
+                            <select  id="Residing_Port_Quaters_Retirements" name='Residing_Port_Quaters_Retirements'
+                            class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                            style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                <option value="" selected disabled hidden>Select an Option</option>
+                                <option value="Yes">YES</option>
+                                <option value="No">NO</option>
+                        </select>
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Remarks by GAD</div>
+                            <div class=""></div>
+                            <input type="text"  placeholder="Remarks (If any)" id="Remarks_By_GAD_Retirements" name='Remarks_By_GAD_Retirements' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block text-sm font-medium text-gray-900 w-fit px-1 bg-[#fff] flex mb-1">Remarks by Finance</div>
+                            <div class=""></div>
+                            <input type="text" disabled placeholder="Remarks (If any)" id="Remarks_Finance_Retirements" name='Remarks_Finance_Retirements' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        
+                        <div class="col-span-2 flex justify-center mx-6 my-6">
+                            <button type="submit" class="w-fit bg-green-500 text-white py-2 px-4 rounded shadow text-sm" id="civil_submit_btn">Submit</button>
+                        </div>                             
+                </div> 
+              </form>
+        </div>
+    </div>
+</body>
+<script>
+    const Designation = document.getElementById('Designation_Retirements');
+    document.addEventListener('DOMContentLoaded', function() {
+    var xmlhttp = new XMLHttpRequest();
+    var url = '/get_designations';
+    xmlhttp.open('POST', url, true);
+    xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+            if (xmlhttp.status == 200) {
+                let data = JSON.parse(xmlhttp.responseText);
+                let options = data.options;
+                for (let i = 0; i < options.length; i++) {
+                    let option_val = options[i].title;
+                    Designation.innerHTML += `<option value="${option_val}">${option_val}</option>`;
+                }
+            } else {
+                console.error('Error:', xmlhttp.statusText);
+            }
+        }
+    };
+    xmlhttp.send();
+});
+
+</script>
+</html>

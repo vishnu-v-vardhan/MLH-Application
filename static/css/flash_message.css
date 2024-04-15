@@ -1,0 +1,32 @@
+/* CSS for flash messages */
+.alert-container {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* z-index: 9999; */
+}
+
+
+.alert {
+    position: relative;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    animation: slideIn 0.5s ease forwards, slideOut 0.5s ease forwards 2.5s;
+    background-color: #4CAF50; /* Green background color */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateX(100%); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOut {
+    0% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(100%); }
+}

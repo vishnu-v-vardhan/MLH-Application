@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;1,300;1,400&family=Poppins:wght@300&display=swap');
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f9fbfd;
+}
+
+
+.profile_btn{
+    position: relative;
+}
+
+.profile_btn #profile_box{
+    position: absolute;
+    content: '';
+    top: 55px;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    display: none;
+}
+
+#profile_box.active{
+    display: block;
+}
+
+/* Add this to your styles */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.dropdown-menu li {
+    padding: 20px;
+}
+
+/* Show the dropdown on hover */
+li:hover .dropdown-menu {
+    display: block;
+}

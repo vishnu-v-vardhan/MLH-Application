@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSR </title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="./static/css/flash_message.css">
+    <script src="/static/lib/tailwindcss.js"></script>
+    <script src="/static/lib/profile_btn.js"></script>
+</head>
+<body>
+    <nav class="px-4 py-2 bg-[#ffff]" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" >
+        <div class="flex justify-between items-center">
+            <div class="">
+                <img src="./static/images/logo_2.png" alt="Logo" class="w-14 h-16 text-[#79767b] ">
+            </div>
+            <ul class="flex items-center text-[14px] text-[#747176] font-bold   gap-4">
+                <li class="mr-7">
+                    <a href="/landing_page_welfare" class="border-b-4 border-[#000] p-2">Home</a>
+                </li>
+                <li class="mr-7">
+                    <a href="#" class="">Dept Forms</a>
+                    <ul class="dropdown-menu capitalize">
+                        {% for form in form_names|sort(attribute='form_name') %}
+                            <li><a href="{{ form.form_name }}">{{ form.form_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                  <li class="mr-7">
+                      <a href="#" class="">Establishment </a>
+                  </li>
+                <li class="mr-7">
+                    <a href="#" class="">Reports</a>
+                </li>
+                
+               
+            </ul>
+            <div class="">
+              <div id="" class="profile_btn">
+                  <div class="flex items-center">
+                      <img src="./static/images/Male User.svg" alt="" id="profile_btn">
+                  </div>
+                  
+
+                  <div id="profile_box">
+                      <div class="flex flex-col bg-white text-left shadow-lg rounded border">
+                          <div class="p-3">
+                              <div class="capitalize font-bold" id="u_name">{{user.name}}</div>
+                              <div class="lowercase text-sm mt-1.5" id="u_email">{{user.email}}</div>
+                          </div>
+                          <div class="text-sm bg-red-500 block p-3 text-white cursor-pointer" id=""><a href = "{{ url_for('logout')}}">Logout </a></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            
+        </div>
+    </nav>
+    <div class="max-w-screen-xl mx-auto  mt-4 rounded-lg   p-8 " style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" >
+        <div class="flex justify-center rounded-lg  p-2" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+                <form action="submit_csr_activity" method="POST" enctype="multipart/form-data">
+                    <div class="text-lg mb-6 font-Large text-gray-900" style="text-align: center;">
+                        <h2>CSR</h2>
+                    </div>
+                    <div class="grid grid-cols-2 items-center ml-8 gap-8">
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Date</div>
+                            <div class=""></div>
+                            <input type="date" id="Date_Csr" name='Date_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Activity Name </div>
+                            <div class=""></div>
+                            <input type="text" id="Activity_Name_Csr" name='Activity_Name_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Amount Proposed</div>
+                            <div class=""></div>
+                            <input type="number" min="0" step="1" oninput="validity.valid||(value='');" id="Amount_Proposed_Csr" name='Amount_Proposed_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Amount Sanctioned</div>
+                            <div class=""></div>
+                            <input type="number" min="0" step="1" oninput="validity.valid||(value='');" id="Amount_Sanctioned_Csr"  name='Amount_Sanctioned_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Sanctioned to(Party Name)</div>
+                            <div class=""></div>
+                            <input type="text" id="Sanctioned_Party_Name_Csr" name='Sanctioned_Party_Name_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Sanctioned Date</div>
+                            <div class=""></div>
+                            <input type="date" id="Sanctioned_Date_Csr" name='Sanctioned_Date_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Upload File</div>
+                            <div class=""></div>
+                            <input type="file" id="Upload_File_Csr" name='Upload_File_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Notified Date by GAD</div>
+                            <div class=""></div>
+                            <input type="date" id="Notified_Date_Csr" name='Notified_Date_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block text-sm font-medium text-gray-900 rounded-sm w-fit px-1 flex mb-1">Approved by Finance</div>
+                            <div class=""></div>
+                            <select id="Approved_Finance_Csr" name='Approved_Finance_Csr'
+                                class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;"
+                                style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                                    <option value="" selected disabled hidden>Select an Option</option>
+                                    <option value="Yes">YES</option>
+                                    <option value="No">NO</option>
+                            </select>
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Approval Date</div>
+                            <div class=""></div>
+                            <input type="date" id="Approval_Date_Csr" name='Approval_Date_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="relative">
+                            <div for="" class="block  text-sm font-medium text-gray-900  rounded-sm w-fit px-1   flex mb-1">Work Stages</div>
+                            <div class=""></div>
+                            <div id="GadRemarksDiv">
+                                <input type="text"  placeholder="Remarks (If any)" id="Remarks_GAD_Csr" name='Remarks_GAD_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                            </div>
+                            <button type="button" onclick="addNew()" class="bg-blue-500 text-white px-3 py-1 rounded-lg" style="margin-top: 5px; font-size: small;">Add New</button>
+                        </div>
+                
+                        <div class="relative">
+                            <div for="" class="block text-sm font-medium text-gray-900 w-fit px-1 bg-[#fff] flex mb-1">Remarks for Finance</div>
+                            <div class=""></div>
+                            <input type="text" placeholder="Remarks (If any)" id="Remarks_Finance_Csr" name='Remarks_Finance_Csr' class="border border-gray-300 text-gray-900 text-sm bg-[#fff]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none  " style="box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">
+                        </div>
+                        <div class="col-span-2 flex justify-center mx-6 my-6">
+                            <button type="submit" class="w-fit bg-green-500 text-white py-2 px-4 rounded shadow text-sm" id="civil_submit_btn">Submit</button>
+                        </div>
+                </div> 
+              </form>
+        </div>
+    </div>
+</body>
+<script>
+    function addNew() {
+        var newDateInput = document.createElement('input');
+        newDateInput.setAttribute('type', 'text');
+        newDateInput.setAttribute('required', 'required');
+        newDateInput.setAttribute('name', 'Remarks_GAD_Csr');
+        newDateInput.setAttribute('placeholder', 'Remarks (If any)');
+        newDateInput.setAttribute('class', 'border border-gray-300 text-gray-900 text-sm bg-[#fff] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-[11px] outline-none');
+        newDateInput.setAttribute('style', 'margin-top: 5px');
+        newDateInput.style.boxShadow = 'rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px';
+        var GADRemarksDiv = document.getElementById('GadRemarksDiv');
+        GADRemarksDiv.appendChild(newDateInput);
+    }
+</script>
+</html>
