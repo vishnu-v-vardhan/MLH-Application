@@ -1,2 +1,3 @@
 # MLH-Application
-A small part of a web based internal tool developed for a government organization for my MLH Fellowship Application
+## An application for Data Centalisation which in turn is used for KPI Extraction using PowerBI
+A small part of a web based internal tool developed for a government organization.
